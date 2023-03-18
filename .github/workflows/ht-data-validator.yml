@@ -22,6 +22,7 @@ jobs:
           repository: 'plindman/ht-actions'
           token: ${{ secrets.HT_ACTIONS_CODE }}
           path: ''
+      - name: Get submodules
         run: |
           git submodule update --init --recursive src/ht-data-validator
       - name: List files in the repository
