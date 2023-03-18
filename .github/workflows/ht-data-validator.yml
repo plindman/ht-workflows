@@ -6,7 +6,7 @@ on:
   repository_dispatch:
     types: [ht-data-validator-start]
 
-env:
+# env:
   # SHAREPOINT_USERNAME: ${{ secrets.SHAREPOINT_USERNAME }}
 
 jobs:
