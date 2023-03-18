@@ -23,6 +23,12 @@ jobs:
           token: ${{ secrets.HT_ACTIONS_CODE }}
           submodules: 'recursive'
           path: ''
+      - name: Checkout submodule2
+        uses: actions/checkout@v3
+        with:
+          repository: plindman/ht-data-validator
+          path: src/ht-data-validator
+          token: ${{ secrets.HT_ACTIONS_CODE }}
       - name: List files in the repository
         run: |
           ls ./src/ht-data-validator/
