@@ -1,0 +1,28 @@
+# .github/workflows/ht-data-validator.yaml
+name: ht-data-validator
+on: 
+  # push:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [ht-data-validator-start]
+
+env:
+  # SHAREPOINT_USERNAME: ${{ secrets.SHAREPOINT_USERNAME }}
+
+jobs:
+  ht-data-validator:
+    runs-on: ubuntu-latest
+    name: ht-data-validator
+    steps:
+      # - name: Checkout
+      #  uses: actions/checkout@v3
+      - name: Clone repository
+        uses: actions/checkout@v3
+        with:
+          repository: 'plindman/ht-data-validator'
+          token: ${{ secrets.HT_ACTIONS_CODE }}
+          submodules: 'recursive'
+          path: 'src/ht-data-validator'
+      - name: Run the action
+        id: ht-data-validator
+        uses: ./src/ht-data-validator/
