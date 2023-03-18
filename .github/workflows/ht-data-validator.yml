@@ -14,24 +14,24 @@ jobs:
     runs-on: ubuntu-latest
     name: ht-data-validator
     steps:
-      # - name: Checkout
-      #  uses: actions/checkout@v3
       - name: Clone repository
         uses: actions/checkout@v3
         with:
           repository: 'plindman/ht-actions'
-          token: ${{ secrets.HT_ACTIONS_CODE }}
-          submodules: 'recursive'
           path: ''
-      - name: Checkout submodule2
+          token: ${{ secrets.HT_ACTIONS_CODE }}
+
+      - name: Checkout ht-data-validator
         uses: actions/checkout@v3
         with:
           repository: plindman/ht-data-validator
           path: src/ht-data-validator
           token: ${{ secrets.HT_ACTIONS_CODE }}
+
       - name: List files in the repository
         run: |
           ls ./src/ht-data-validator/
+
       - name: Run the action
         id: ht-data-validator
         uses: ./src/ht-data-validator/
