@@ -23,6 +23,9 @@ jobs:
           token: ${{ secrets.HT_ACTIONS_CODE }}
           submodules: 'recursive'
           path: 'src/ht-data-validator'
+      - name: List files in the repository
+        run: |
+          ls ./src/ht-data-validator/
       - name: Run the action
         id: ht-data-validator
         uses: ./src/ht-data-validator/
