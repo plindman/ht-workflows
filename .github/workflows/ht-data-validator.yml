@@ -34,16 +34,16 @@ jobs:
         id: ht-data-validator
         uses: ./src/ht-data-validator/
         with:
-          MSGRAPH_URL: ${{ env.MSGRAPH_URL }}
-          MSGRAPH_SCOPE: ${{ env.MSGRAPH_SCOPE }}
-          MSGRAPH_AUTHORITY: ${{ env.MSGRAPH_AUTHORITY }}
+          MSGRAPH_URL: ${{ vars.MSGRAPH_URL }}
+          MSGRAPH_SCOPE: ${{ vars.MSGRAPH_SCOPE }}
+          MSGRAPH_AUTHORITY: ${{ vars.MSGRAPH_AUTHORITY }}
 
           MSGRAPH_CLIENT_ID: ${{ secrets.MSGRAPH_CLIENT_ID }}
           MSGRAPH_CLIENT_SECRET: ${{ secrets.MSGRAPH_CLIENT_SECRET }}
           MSGRAPH_TENANT_ID: ${{ secrets.MSGRAPH_TENANT_ID }}
 
-          HT_SHAREPOINT_HOST: ${{ env.HT_SHAREPOINT_HOST }}
-          HT_SHAREPOINT_SITE: ${{ env.HT_SHAREPOINT_SITE }}
-          HT_SHAREPOINT_URL: ${{ env.HT_SHAREPOINT_URL }}
-          HT_SHAREPOINT_DOCS: ${{ env.HT_SHAREPOINT_DOCS }}
+          HT_SHAREPOINT_HOST: ${{ vars.HT_SHAREPOINT_HOST }}
+          HT_SHAREPOINT_SITE: ${{ vars.HT_SHAREPOINT_SITE }}
+          HT_SHAREPOINT_URL: ${{ vars.HT_SHAREPOINT_URL }}
+          HT_SHAREPOINT_DOCS: ${{ vars.HT_SHAREPOINT_DOCS }}
 
