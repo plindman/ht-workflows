@@ -6,9 +6,6 @@ on:
   # repository_dispatch:
   #  types: [ht-data-validator-start]
 
-# env:
-  # SHAREPOINT_USERNAME: ${{ secrets.SHAREPOINT_USERNAME }}
-
 jobs:
   ht-data-validator:
     runs-on: ubuntu-latest
@@ -33,5 +30,18 @@ jobs:
           ls ./src/ht-product-docs/
 
       - name: Run the action
-        id: ht-data-validator
+        id: ht-product-docs
         uses: ./src/ht-product-docs/
+        with:
+          MSGRAPH_URL: ${{ vars.MSGRAPH_URL }}
+          MSGRAPH_SCOPE: ${{ vars.MSGRAPH_SCOPE }}
+          MSGRAPH_AUTHORITY: ${{ vars.MSGRAPH_AUTHORITY }}
+
+          MSGRAPH_CLIENT_ID: ${{ secrets.MSGRAPH_CLIENT_ID }}
+          MSGRAPH_CLIENT_SECRET: ${{ secrets.MSGRAPH_CLIENT_SECRET }}
+          MSGRAPH_TENANT_ID: ${{ secrets.MSGRAPH_TENANT_ID }}
+
+          HT_SHAREPOINT_HOST: ${{ vars.HT_SHAREPOINT_HOST }}
+          HT_SHAREPOINT_SITE: ${{ vars.HT_SHAREPOINT_SITE }}
+          HT_SHAREPOINT_URL: ${{ vars.HT_SHAREPOINT_URL }}
+          HT_SHAREPOINT_DOCS: ${{ vars.HT_SHAREPOINT_DOCS }}
