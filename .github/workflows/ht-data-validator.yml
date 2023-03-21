@@ -12,6 +12,7 @@ on:
 jobs:
   ht-data-validator:
     runs-on: ubuntu-latest
+    environment: ht-actions
     name: ht-data-validator
     steps:
       - name: Clone repository
@@ -35,3 +36,5 @@ jobs:
       - name: Run the action
         id: ht-data-validator
         uses: ./src/ht-data-validator/
+        with:
+          MSGRAPH_URL: ${{ env.MSGRAPH_URL }}
