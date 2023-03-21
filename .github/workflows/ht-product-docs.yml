@@ -9,6 +9,7 @@ on:
 jobs:
   ht-data-validator:
     runs-on: ubuntu-latest
+    environment: ht-actions
     name: ht-product-docs
     steps:
       - name: Clone repository
