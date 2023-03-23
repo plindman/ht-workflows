@@ -29,6 +29,7 @@ jobs:
       - name: List files in the repository
         run: |
           ls ./src/ht-product-docs/
+          ls ./src/ht-product-docs/images
 
       - name: Run the action
         id: ht-product-docs
