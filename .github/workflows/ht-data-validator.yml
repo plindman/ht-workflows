@@ -47,3 +47,10 @@ jobs:
           HT_SHAREPOINT_URL: ${{ vars.HT_SHAREPOINT_URL }}
           HT_SHAREPOINT_DOCS: ${{ vars.HT_SHAREPOINT_DOCS }}
 
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+            name: temp logs
+            path: |
+              temp/*.log
+  
