@@ -1,0 +1,56 @@
+# .github/workflows/ht-data-sync.yaml
+name: ht-data-sync
+on: 
+  # push:
+  workflow_dispatch:
+  # repository_dispatch:
+  #  types: [ht-data-sync-start]
+
+jobs:
+  ht-data-sync:
+    runs-on: ubuntu-latest
+    environment: ht-actions
+    name: ht-data-sync
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+        with:
+          repository: 'plindman/ht-actions'
+          path: ''
+          token: ${{ secrets.HT_ACTIONS_CODE }}
+
+      - name: Checkout ht-data-sync
+        uses: actions/checkout@v3
+        with:
+          repository: plindman/ht-data-sync
+          path: src/ht-data-sync
+          token: ${{ secrets.HT_ACTIONS_CODE }}
+
+      - name: List files in the repository
+        run: |
+          ls ./src/ht-data-sync/
+
+      - name: Run the action
+        id: ht-data-sync
+        uses: ./src/ht-data-sync/
+        with:
+          MSGRAPH_URL: ${{ vars.MSGRAPH_URL }}
+          MSGRAPH_SCOPE: ${{ vars.MSGRAPH_SCOPE }}
+          MSGRAPH_AUTHORITY: ${{ vars.MSGRAPH_AUTHORITY }}
+
+          MSGRAPH_CLIENT_ID: ${{ secrets.MSGRAPH_CLIENT_ID }}
+          MSGRAPH_CLIENT_SECRET: ${{ secrets.MSGRAPH_CLIENT_SECRET }}
+          MSGRAPH_TENANT_ID: ${{ secrets.MSGRAPH_TENANT_ID }}
+
+          HT_SHAREPOINT_HOST: ${{ vars.HT_SHAREPOINT_HOST }}
+          HT_SHAREPOINT_SITE: ${{ vars.HT_SHAREPOINT_SITE }}
+          HT_SHAREPOINT_URL: ${{ vars.HT_SHAREPOINT_URL }}
+          HT_SHAREPOINT_DOCS: ${{ vars.HT_SHAREPOINT_DOCS }}
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+            name: temp logs
+            path: |
+              temp/*.log
+  
