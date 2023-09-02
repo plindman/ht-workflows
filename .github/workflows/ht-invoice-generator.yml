@@ -7,7 +7,7 @@ on:
       HT_ORDER_NUMBER:
         description: Order number of the invoice to generate
   repository_dispatch:
-  #  types: [ht-data-validator-start]
+    types: [ht-invoice-generator]
 
 jobs:
   ht-data-validator:
