@@ -49,6 +49,8 @@ jobs:
 
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
+          HT_INVOICE_ID: test0002
+
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
