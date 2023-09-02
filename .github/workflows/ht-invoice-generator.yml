@@ -51,9 +51,10 @@ jobs:
           HT_SHAREPOINT_DOCS: ${{ vars.HT_SHAREPOINT_DOCS }}
 
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          HUBSPOT_ACCESS_TOKEN: ${{ secrets.HUBSPOT_ACCESS_TOKEN }}
 
           HT_INVOICE_ID: ${{ github.event.inputs.HT_INVOICE_ID }}
-          
+
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
