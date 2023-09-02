@@ -30,7 +30,7 @@ jobs:
           fi
           echo "ordernumber=$val" >> $GITHUB_OUTPUT
       - name: Use prior output
-        run: echo "The count was ${{ steps.local-values.outputs.ordernumber }}"
+        run: echo "The order number is ${{ steps.local-values.outputs.ordernumber }}"
       - name: Clone repository
         uses: actions/checkout@v3
         with:
@@ -69,7 +69,7 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           HUBSPOT_ACCESS_TOKEN: ${{ secrets.HUBSPOT_ACCESS_TOKEN }}
 
-          HT_ORDER_NUMBER: ${{ github.event.inputs.HT_ORDER_NUMBER }}
+          HT_ORDER_NUMBER: ${{ steps.local-values.outputs.ordernumber }}
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
