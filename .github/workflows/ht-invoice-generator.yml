@@ -14,23 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: ht-actions
     name: ht-invoice-generator
-    outputs:
-      order_number: ${{ steps.set-order-number.outputs.order_number }}
     steps:
-      - name: Order Number
-        id: set-order-number
-        run: |
-          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-            # Use inputs from workflow_dispatch event
-            val="${{ github.event.inputs.HT_ORDER_NUMBER }}"
-          elif [[ "${{ github.event_name }}" == "repository_dispatch" ]]; then
-            # Use client_payload from repository_dispatch event
-            val="${{ github.event.client_payload.order_number }}"
-          else
-            echo "Unsupported event type: ${{ github.event_name }}"
-            exit 1
-          fi
-          echo "::set-output name=order_number::$val"
       - name: Clone repository
         uses: actions/checkout@v3
         with:
