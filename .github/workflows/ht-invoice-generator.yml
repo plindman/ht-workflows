@@ -1,0 +1,57 @@
+# .github/workflows/ht-invoice-generator.yaml
+name: ht-invoice-generator
+on: 
+  # push:
+  workflow_dispatch:
+  # repository_dispatch:
+  #  types: [ht-data-validator-start]
+
+jobs:
+  ht-data-validator:
+    runs-on: ubuntu-latest
+    environment: ht-actions
+    name: ht-invoice-generator
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+        with:
+          repository: 'plindman/ht-actions'
+          path: ''
+          token: ${{ secrets.HT_ACTIONS_CODE }}
+
+      - name: Checkout ht-invoice-generator
+        uses: actions/checkout@v3
+        with:
+          repository: plindman/ht-invoice-generator
+          path: src/ht-invoice-generator
+          token: ${{ secrets.HT_ACTIONS_CODE }}
+
+      - name: List files in the repository
+        run: |
+          ls ./src/ht-invoice-generator/
+
+      - name: Run the action
+        id: ht-invoice-generator
+        uses: ./src/ht-invoice-generator/
+        with:
+          MSGRAPH_URL: ${{ vars.MSGRAPH_URL }}
+          MSGRAPH_SCOPE: ${{ vars.MSGRAPH_SCOPE }}
+          MSGRAPH_AUTHORITY: ${{ vars.MSGRAPH_AUTHORITY }}
+
+          MSGRAPH_CLIENT_ID: ${{ secrets.MSGRAPH_CLIENT_ID }}
+          MSGRAPH_CLIENT_SECRET: ${{ secrets.MSGRAPH_CLIENT_SECRET }}
+          MSGRAPH_TENANT_ID: ${{ secrets.MSGRAPH_TENANT_ID }}
+
+          HT_SHAREPOINT_HOST: ${{ vars.HT_SHAREPOINT_HOST }}
+          HT_SHAREPOINT_SITE: ${{ vars.HT_SHAREPOINT_SITE }}
+          HT_SHAREPOINT_URL: ${{ vars.HT_SHAREPOINT_URL }}
+          HT_SHAREPOINT_DOCS: ${{ vars.HT_SHAREPOINT_DOCS }}
+
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+            name: temp logs
+            path: |
+              temp/*.log
