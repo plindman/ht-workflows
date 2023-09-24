@@ -18,11 +18,12 @@ jobs:
       - name: Order Number
         id: local-values
         run: |
-          echo "$GITHUB_EVENT_PATH"
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             # Use inputs from workflow_dispatch event
             val="${{ github.event.inputs.HT_ORDER_NUMBER }}"
           elif [[ "${{ github.event_name }}" == "repository_dispatch" ]]; then
+          # Log client_payload from equest
+          cat "$GITHUB_EVENT_PATH"
             # Use client_payload from repository_dispatch event
             val="${{ github.event.client_payload.HT_ORDER_NUMBER }}"
           else
