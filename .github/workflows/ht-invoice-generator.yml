@@ -18,6 +18,7 @@ jobs:
       - name: Order Number
         id: local-values
         run: |
+          echo "$GITHUB_EVENT_PATH"
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             # Use inputs from workflow_dispatch event
             val="${{ github.event.inputs.HT_ORDER_NUMBER }}"
