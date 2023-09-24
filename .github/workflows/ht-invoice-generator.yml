@@ -18,7 +18,7 @@ jobs:
       - name: Log event content
         id: event-content
         run: |
-          cat "$GITHUB_EVENT_PATH"
+          echo "${{ github.event.client_payload }}"
       - name: Order Number
         id: local-values
         run: |
