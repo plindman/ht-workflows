@@ -10,7 +10,7 @@ on:
     types: [ht-invoice-generator]
 
 jobs:
-  ht-data-validator:
+  ht-invoice-generator:
     runs-on: ubuntu-latest
     environment: ht-actions
     name: ht-invoice-generator
