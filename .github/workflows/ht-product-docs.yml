@@ -3,11 +3,11 @@ name: ht-product-docs
 on: 
   # push:
   workflow_dispatch:
-  # repository_dispatch:
-  #  types: [ht-data-validator-start]
+  repository_dispatch:
+    types: [ht-product-docs]
 
 jobs:
-  ht-data-validator:
+  ht-product-docs:
     runs-on: ubuntu-latest
     environment: ht-actions
     name: ht-product-docs
