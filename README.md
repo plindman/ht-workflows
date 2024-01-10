@@ -14,3 +14,7 @@
 1. Update the local dev GITHUB_WORKFLOW_PAT secret with the new generated value.
 1. Update the local dev GITHUB_WORKFLOW_PAT secret with the new generated value.
   
+
+### ht-actions Azure AD token
+1. Regenerate ht-actions client secret in Azure AD
+1. Update it in ht-workflows environment secrets
